@@ -14,7 +14,8 @@ function NewPlantForm( {onAddPlant} ) {
       [e.target.name]: e.target.value})
   }
 
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault()
     const config = {
       method: 'POST',
       headers: {
