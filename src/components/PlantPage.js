@@ -13,9 +13,13 @@ function PlantPage() {
       .then(plants => updateList(plants))
   }, [])
 
+  function addPlant(p) {
+    updateList([...plantList, p])
+  }
+
   return (
     <main>
-      <NewPlantForm />
+      <NewPlantForm onAddPlant={addPlant} />
       <Search />
       <PlantList plants={plantList} />
     </main>
