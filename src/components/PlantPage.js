@@ -6,6 +6,7 @@ import Search from "./Search";
 function PlantPage() {
 
   const [plantList, updateList] = useState([])
+  const [search, updateSearch] = useState('')
 
   useEffect(() => {
     fetch('http://localhost:6001/plants')
@@ -17,11 +18,13 @@ function PlantPage() {
     updateList([...plantList, p])
   }
 
+  const renderedPlants = plantList.filter(plant => plant.name.toUpperCase().match(search.toUpperCase()))
+
   return (
     <main>
       <NewPlantForm onAddPlant={addPlant} />
-      <Search />
-      <PlantList plants={plantList} />
+      <Search onSearch={updateSearch} searchValue={search} />
+      <PlantList plants={renderedPlants} />
     </main>
   );
 }
